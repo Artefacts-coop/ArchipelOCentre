@@ -1,0 +1,3 @@
+[submodule "chimere"]
+	path = chimere
+	url = https://gitlab.com/chimere/chimere.git
