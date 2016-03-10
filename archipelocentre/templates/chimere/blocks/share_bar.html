@@ -1,0 +1,39 @@
+{% load i18n %}
+    {% if share_networks %}
+    {% if simple %}{% trans "Share on"%}{% for share_network in share_networks %}
+    <a href='{{share_network.1}}'>{{share_network.0}}</a>
+    {% endfor %}{%else%}
+    <ul class='share'>
+        <li>{% trans "Share"%}</li>{% for share_network in share_networks %}
+        <li><a class='share_link share_id_{{share_network.0}}' href='{{share_network.1}}'><span class='fa fa-chimere fa-chimere-{{share_network.0}}'></span></a></li>
+    {% endfor %}</ul>{% endif %}
+    <script language='text/javascript'>
+        $(function(){
+            $('.share_link').click(function(){
+                var href = $(this).attr('href');
+                var url = '{% url chimere:get-share-url %}';
+                var classes = $(this).attr('class').split(' ');
+                prefix = 'share_id_';
+                var share_id;
+                for (idx=0;idx<classes.length;idx++){
+                    if(classes[idx].substring(0, prefix.length) == prefix){
+                        var share_id = classes[idx].substring(prefix.length);
+                    }
+                }
+                var params = $('#permalink a').attr('href').split('/');
+                url += share_id + params[params.length-1];
+                $.ajax({url: url,
+                    dataType: "html",
+                    success: function (url) {
+                        window.open(url);
+                        return false;
+                    },
+                    error: function(){
+                        return false;
+                    }
+                   });
+                return false;
+            });
+        });
+    </script>
+    {% endif %}

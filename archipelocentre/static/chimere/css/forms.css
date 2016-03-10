@@ -1,0 +1,179 @@
+/* colors definition */
+
+.map_button .toggle-button-inactive{
+    color: #5b80b2;
+    background-color:#fff;
+    color:#54c200;
+}
+
+.map_button .toggle-button-active, .toggle-button:hover{
+    background-color: #5b80b2;
+    background-color:#54c200;
+    color:#fff;
+}
+
+/**/
+
+div.rightWrapper{
+    width: 100%;
+    float:left;
+}
+
+div.rightform{
+    margin-left:400px;
+    height:400px;
+}
+
+div.leftform{
+    float: left;
+    width: 400px;
+    margin-left: -100%;
+}
+
+div.bottomform{
+    clear: left;
+    width: 100%;
+}
+
+#map_edit, #map_edit_area{
+    margin:0;
+    border: 1px solid black;
+    width:100%;
+    height:350px;
+}
+
+#map_edit #OpenLayers_Control_MaximizeDiv,
+#map_edit_area #OpenLayers_Control_MaximizeDiv{
+    display:none;
+}
+
+.map_button{
+    position:absolute;
+    z-index:1000;
+    text-align:center;
+    margin:0;
+    margin-left:100px;
+    padding:0;
+    margin-top:10px;
+    font-size:16px;
+}
+
+.map_button a{
+    margin:8px;
+    padding:4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    text-decoration:none;
+}
+
+#live_lonlat{
+    margin:1em;
+    float:left;
+}
+
+#live_lonlat p{
+    display:inline-table;
+    margin-left:0;
+}
+
+.toggle-button{
+    margin:4px 0;
+    padding:2px 0;
+}
+
+#upload, #draw-label{
+    vertical-align:center;
+    background-repeat:no-repeat;
+    font-size:20px;
+    margin:0;
+    padding:30px 0;
+    padding-left:80px;
+}
+
+#upload{
+    background-image:url('../img/upload.png');
+}
+
+#draw-label{
+    background-image:url('../img/drawing.png');
+}
+
+#upload a, #draw-label a{
+    text-decoration:none;
+}
+
+#draw-or{
+    padding:0;
+    padding-left:80px;
+    margin:0;
+    font-size:16px;
+}
+
+.help-route{
+    width:250px;
+    float:right;
+    position:absolute;
+    z-index:1000;
+    right:45px;
+    background-color:#EEF;;
+    margin: 10px 0;
+    padding:2px 6px 4px 6px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border:1px solid grey;
+}
+
+#help-route-create{
+    display:None
+}
+
+#help-route-modify{
+    display:None
+}
+
+.object-tools{
+    width:90px;
+    overflow:hidden;
+    height:16px;
+}
+
+.form-row.field-route,
+.form-row.field-point,
+.form-row.field-filtr.field-map{
+    float:right;
+    width:50%;
+}
+
+.form-row.field-route .help-route{
+    width:150px;
+}
+
+#id_filtr{
+    width:400px;
+}
+
+.aligned .form-row.field-route label,
+.aligned .form-row.field-point label,
+.aligned .input-osm label{
+    display:inline;
+    float:none;
+}
+
+form .aligned .form-row.field-marker p,
+form .aligned .form-row.field-route p,
+form .aligned .input-osm p{
+    padding:0.2em;
+    margin:0;
+}
+
+form .aligned p.help-osm{
+    padding-left:0;
+    margin-left:0;
+}
+
+form .aligned p.help-osm.errornote{
+    padding-left:30px;
+    margin-left:0;
+}

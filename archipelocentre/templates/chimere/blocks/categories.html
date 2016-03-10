@@ -1,0 +1,32 @@
+{% load i18n %}
+<ul id='ul_categories'>
+    {% for category, lst_sub_categories in sub_categories %}
+    <li class='main_category'>
+        <img class="control_image toggle_category" id="maincategory_img_{{category.id}}" alt="control" src="{{ STATIC_URL }}chimere/img/{% if category.selected %}minus.png{% else %}plus.png{% endif %}" />
+        <input type="checkbox" id='checkall_{{category.id}}'>
+        <span class='category_name'>{% trans category.name %}</span>
+        <span class="glyphicon glyphicon-zoom-in zoom_image zoom_to_category" id="zoom_to_category_{{category.id}}"></span>
+        <ul class='subcategories' id='maincategory_{{category.id}}'{% if not category.selected %} style='display:None'{% endif %}>
+            {% for sub_category in lst_sub_categories %}
+            <li id='li_sub_{{sub_category.id}}' class='subcategory'>
+                <input type='checkbox' name='category_{{sub_category.id}}' id='category_{{sub_category.id}}'{% if sub_category.selected %} checked='checked'{% endif %}/>
+                <label for='category_{{sub_category.id}}'>
+                    <span class='cat_image'><img alt='{{ sub_category.name }}' src='{{ MEDIA_URL }}{{sub_category.icon.image}}'/></span>
+                    {% trans sub_category.name %}
+                </label>
+                <span class="glyphicon glyphicon-zoom-in zoom_image zoom_to_subcategory" id="zoom_to_subcategory_{{sub_category.id}}"></span>
+            </li>
+            {% endfor %}
+            {% if category.description %}
+                <li><a href="#" onclick="$('#map').chimere('category_detail', {{category.id}});">{% trans "Tell me more..." %}</a></li>
+            {% endif %}
+        </ul>
+    </li>
+    {% endfor %}
+    {% if sub_categories %}
+    <li id='display_submited'>
+        <input type='checkbox' name='display_submited' id='display_submited_check'/> {% trans "Display markers and routes waiting for validation"%}
+    </li>
+    {% endif %}
+</ul>
+

@@ -1,0 +1,149 @@
+{% load i18n sanitize chimere_tags %}
+<div id='detail-wrapper'>
+<button onclick='$("#detail").fadeOut();return false;' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+<h2>{{ marker.name }}</h2>
+<div class='detail_content'>
+    {% if marker.default_pictures or marker.default_pictures or marker.default_multimedia_items%}
+    <div class='small-gallery'>
+    {% for picture in marker.default_pictures %}
+        {% multimedia_render picture %}
+    {%endfor%}
+    {% for multimedia_item in marker.default_multimedia_items %}
+        {% multimedia_render multimedia_item %}
+    {%endfor%}
+    </div>
+    {%endif%}
+<div>
+    {% if dated %}
+    <p class='detail_start_date'><label>{% trans "Date:" %}</label> <span>{{marker.start_date|date:"D d M Y"}}
+    {% if marker.end_date %} - {{marker.end_date|date:"D d M Y"}}</p>{% endif %}</span>
+    {% endif %}
+    {% if marker.description %}
+    <p class='description'>{{ marker.description|sanitize:"p b i br hr strong em img:src:alt span:style a:href:target ul li ol h1 h2 h3 h4 table td tr th"|safe}}</p>
+    {% endif %}
+    {% for property in marker.getProperties %}
+    <p class='{{property.propertymodel.getNamedId}}'>{{ property.value|sanitize:"p b i br hr strong em img:src:alt span:style a:href:target ul li ol h1 h2 h3 h4 table td tr th"|safe}}</p>
+    {% endfor %}
+    {% if marker.origin %}<p class='detail_source'><strong>{% trans "Source:" %}</strong> <span>{{marker.origin}}</span></p>{% endif %}
+    {% if marker.license %}<p class='detail_license'><strong>{% trans "License:" %}</strong> <span>{{marker.license}}</span></p>{% endif %}
+    {% if marker.multimedia_items %}<p class='detail_multimedia'>
+        <a data-toggle='modal' data-target="#multimedia-gallery-{{time_now}}" href='#' id='multimedia-gallery-button'><span class='fa fa-chimere-action fa-camera'></span> <span class='lbl'>{% trans "Show the gallery"%}</span></a>
+    </p>{% endif %}
+    </div>
+    {% share_bar marker.name %}
+    <p class='detail_amendment'><a href='{% if marker.route %}{% url chimere:editroute-item area_name_slash|default_if_none:"" marker.route.pk "" %}{%else%}{% url chimere:edit-item area_name_slash|default_if_none:"" marker.pk "" %}{%endif%}'>
+        {% trans "Submit an amendment" %}
+    </a>
+    {% if moderator_emails %}
+    <a href="mailto:?from={{moderator_emails}}&subject={% trans "Propose amendment" %}&body={% trans "I would like to propose an amendment for this item:"%} {{share_url}}">
+        {% trans "Propose amendment" %}
+    </a>{%endif%}
+</div>
+</div>
+
+
+{% if marker.multimedia_items %}
+<div class="modal fade" id="multimedia-gallery-{{time_now}}" tabindex="-1" role="dialog" aria-labelledby='multimedia-gallery-label' aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="multimedia-gallery-label">{% trans "Gallery" %}</h4>
+      </div>
+      <div class="modal-body">
+
+<div role="tabpanel">
+
+  <ul class="nav nav-pills" role="tablist" id="pills-{{time_now}}">
+    {% for item in marker.multimedia_items %}
+    <li role="presentation"{% if forloop.counter0 == 0%} class="active"{% endif %}>
+      <a href="#tab-{{time_now}}-{{ forloop.counter }}" aria-controls="tab-{{time_now}}-{{ forloop.counter }}" role="tab" data-toggle="pill">
+        {{ item.name }}
+      </a>
+    </li>{% endfor %}
+  </ul>
+
+  <div class="tab-content">
+    {% for multimedia_item in marker.multimedia_items %}
+    <div id="tab-{{time_now}}-{{ forloop.counter }}" role="tabpanel" class="tab-pane{% if forloop.counter0 == 0%} active{% endif %} {% ifequal multimedia_item.multimedia_type.media_type 'V' %}video{% else %}other{% endifequal %}" id="home">
+        {% multimedia_render multimedia_item %}
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id='gallery-{{time_now}}' class='gallery'>
+</div>
+{% endif %}
+
+<script language='javascript' type='text/javascript'>
+$('html').addClass('js-on');
+
+
+function manage_tab_opening (event, ui) {
+    //pause all medias
+    $('video').each(function(index){$(this).pause()});
+    $('audio').each(function(index){$(this).pause()});
+    //start current tabvideo
+    $('ui.panel video').each(function(index){
+        //prevents a Flash-Bug in IE with newest Flash-Player
+        $(this).reinitMedia({queue: true})
+        .play()
+    ;});
+    $('ui.panel audio').each(function(index){
+        //prevents a Flash-Bug in IE with newest Flash-Player
+        $(this).reinitMedia({queue: true})
+        .play()
+    ;});
+}
+
+function manage_gallery_opening (event) {
+    $('div.media-player').jmeEmbedControls();
+    $('.video div.media-player').bind('useractive', function(){
+        $('div.media-controls', this).stop().animate({opacity: 1});
+    }).bind('userinactive', function(){
+        $('div.media-controls', this).stop().animate({opacity: 0});
+    });
+    //$("#gallery-{{time_now}}").dialog("option", "height", 'auto');
+    //$("#gallery-{{time_now}}").dialog("option", "width", 'auto');
+    //$("#gallery-{{time_now}}").dialog("option", "position",
+    //                                   ['center', 'center']);
+}
+
+function manage_gallery_close (event){
+    //pause all medias
+    $('video').each(function(index){$(this).pause()});
+    $('audio').each(function(index){$(this).pause()});
+}
+
+$(document).ready(function(){
+
+    $('#multimedia-gallery-{{time_now}}').on('shown.bs.modal', function (e) {
+        manage_gallery_opening();
+        manage_tab_opening(e);
+    })
+
+    $('#multimedia-gallery-{{time_now}}').on('hide.bs.modal', function (e) {
+        manage_gallery_close();
+    })
+
+    $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+        manage_tab_opening(e);
+    })
+
+    $('div.media-player').jmeEmbedControls();
+    $("a[rel^='prettyPhoto']").prettyPhoto({
+        show_title: false,
+        social_tools: ''
+    });
+
+});
+</script>

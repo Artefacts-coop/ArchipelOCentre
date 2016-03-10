@@ -1,0 +1,61 @@
+{% load i18n chimere_tags %}<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
+
+      <div class='navbar-left'>
+      <ul class="nav nav-pills">
+    {% for action, subactions in actions %}
+        {% ifequal action.id action_selected.0 %}{% if subactions %}
+        {% for subaction in subactions %}
+            <li{% ifequal subaction.id action_selected.1 %} class='active'{% endifequal %}>
+                <a href='{{ subaction.url }}' onclick='saveExtent();'>{{ subaction.label }}</a>
+            </li>
+        {% endfor %}
+        {% endif %}{% endifequal %}
+    {% endfor %}
+        {% if is_map %}
+        <li id='categories-lnk'{% if not has_search %} class='active'{%endif%}><a href='#categories' data-toggle='panel'><span class='fa fa-chimere-action fa-check-circle-o'></span> {% trans "Categories "%}</a></li>
+        {% if has_search %}
+        <li id='search-lnk' class='active'><a href='#search-box' data-toggle='panel'><span class="glyphicon glyphicon-search"></span> {% trans "Search" %}</a></li>
+        {% endif %}
+        {% if areas_visible %}
+        <li id='maps-lnk'><span class='fa fa-chimere-action fa-chimere-maps'></span>{% display_areas %}</li>
+        <li id='permalink-lnk'><span class='fa fa-chimere-action fa-bookmark'></span><span id='permalink'></span></li>
+        <li>{% routing %}</li>
+        <li id='news-lnk'>
+        <a data-toggle='modal' data-target="#news" href='#' id='news_button'><span class='fa fa-chimere-action fa-newspaper-o'></span><span class='lbl'>{% trans "News"%}</span></a>
+        </li>
+        <!-- <li id="simple_button-lnk"><a id='simple_button' href='{% url chimere:simple_index area_name_slash %}'><span class='fa fa-chimere-action fa-simplybuilt'></span><span class='lbl'> {% trans "Simple map" %}</span></a></li> -->
+        {% endif %}
+        <li class='selection-sep'> </li>
+        {% endif %}
+      </ul>
+      </div>
+
+      <div class='navbar-right'>
+
+      <ul class="nav navbar-nav">
+        <li class='selection-sep'> </li>
+    {% for action, subactions in actions %}
+        <li id='{{action.id}}-lnk'{% ifequal action.id action_selected.0 %} class="active"{% endifequal %}>
+          <a href='{{ action.url }}' onclick='jQuery("#map").chimere("saveExtent");'>
+            <span class='fa fa-chimere-action fa-chimere-{{action.id}}'></span>
+            <span class='lbl'>{{ action.label }}</span>
+          </a>
+        </li>
+    {% endfor %}
+      </ul>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+

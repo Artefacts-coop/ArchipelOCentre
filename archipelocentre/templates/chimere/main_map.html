@@ -1,0 +1,52 @@
+{% extends "chimere/base.html" %}
+{% load i18n unlocalize_point chimere_tags %}
+{% block extra_head %}
+{% head_jquery %}
+{% head_chimere %}
+{% head_jme %}
+<script src="{{ STATIC_URL }}chimere/js/jquery.chimere.js" type="text/javascript"></script>
+{% if has_search %}
+<script src="{{ STATIC_URL }}chimere/js/search.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}chimere/js/search-autocomplete.js" type="text/javascript"></script>{% endif %}
+{{ block.super }}
+{% endblock %}
+{% block message_edit %}{% endblock %}
+{% block sidebar %}
+{% display_news %}
+    <div class='show-hide-panel' id='hide-panel'><span class='fa fa-arrow-circle-left'></span></div>
+    <div class='show-hide-panel' id='show-panel'><span class='fa fa-arrow-circle-right'></span></div>
+    <div id='panel' class='navbar-default'>
+      <form id="frm_categories"><div id='categories'></div></form>
+      <div id='search-box' class='ui-widget ui-corner-all'></div>
+    </div>
+    <div id='category_description'>
+    </div>
+    <script type='text/javascript'>
+    $(function(){$('#category_description').dialog({'autoOpen':false});});
+    </script>
+    <div id='detail'></div>
+{% endblock %}
+{% block search_box %} {% endblock %}
+{% block content %}
+    {{block.super}}
+    <div id='main-map'></div>
+<script type="text/javascript">
+   $("#main-map").show();
+</script>
+    {% map_menu %}
+    {% map 'main-map' %}
+    <script type='text/javascript'>
+    // array to keep trace of already displayed items
+    var search_result = new Array();
+    var search_url = "/search/";
+    $(function(){
+        if (has_search){
+            load_search_box();
+        }
+        {%if news_visible %}$('#news').modal();{% endif %}
+    });
+    </script>
+{% endblock %}
+{% block footer %}
+    <p class='map-footer'>{% include "chimere/blocks/footer.html" %}</p>
+{% endblock %}

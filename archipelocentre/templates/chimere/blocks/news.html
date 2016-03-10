@@ -1,0 +1,62 @@
+{% load i18n sanitize chimere_tags %}
+{% if news_lst %}
+<script type='text/javascript'>
+$(function(){
+    $('#news div.media-player').jmeEmbedControls();
+    $('#news video').each(function(index){$(this).pause()});
+    $('#news audio').each(function(index){$(this).pause()});
+    {% if display %}$('#news').modal('show');{%endif%}
+});
+</script>
+
+<div class="modal fade" id="news" tabindex="-1" role="dialog" aria-labelledby="news-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="news-label">{% trans "Upcoming events" %}</h4>
+      </div>
+      <div class="modal-body">
+          <div id='news_content'>
+            {% if welcome_message %}
+            <div id='welcome_message'>
+                {{welcome_message|safe}}
+            </div>
+            {% endif %}
+            <div class='news'>
+            {% if news_lst %}
+                {% for news in news_lst %}
+                    <div class='info'>
+                        {% if news.title %}
+                            <h3>{{news.title}} &ndash; {{ news.date }}</h3>
+                            <p>{{news.content|safe}}</p>
+                        {% else %}
+                            <h3>{{news.name}} &ndash; {{ news.start_date }}{% if news.end_date and news.end_date != news.start_date %} &ndash; {{ news.end_date }}{% endif %}</h3>
+                            {% if news.default_pictures or news.default_pictures or news.default_multimedia_items%}
+                            <div class='small-gallery'>
+                            {% for picture in news.default_pictures %}
+                                {% multimedia_render picture %}
+                            {%endfor%}
+                            {% for multimedia_item in news.default_multimedia_items %}
+                                {% multimedia_render multimedia_item %}
+                            {%endfor%}
+                            </div>
+                            {%endif%}
+                            {% if news.description %}
+                                <p class='description'>{{news.description|sanitize:"p b i br hr strong em span:style a:href:target ul li ol h1 h2 h3 h4 table td th tr"|safe}}</p>
+                            {% endif %}
+                            {% for property in news.getProperties %}
+                                <p class='{{news.propertymodel.getNamedId}}'>{{ property.value|sanitize:"p b i br hr strong em span:style a:href:target ul li ol h1 h2 h3 h4 table td th tr"|safe }}</p>
+                            {% endfor %}
+                            <p class='marker_link'><a href='{% get_tinyfied_url news area_name %}'>{% trans "See it on the map"%}</a></p>
+                        {% endif %}
+                    </div>
+                {%endfor%}
+            {% endif %}
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

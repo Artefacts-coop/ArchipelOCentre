@@ -1,0 +1,114 @@
+{% load i18n %}
+<div id='category_description' class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="{% trans "Close" %}"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="category_description-label"></h4>
+      </div>
+      <div class="modal-body" id="category_description-content">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id='{{map_id}}'></div>
+<script type="text/javascript">
+$("#{{map_id}}").show();
+$(function(){
+   $('#cluster_list').dialog({'autoOpen':false,
+                              'resizable':false,
+                              'width':340,
+                              'dialogClass':'no-titlebar'});
+});
+</script>
+<div id="waiting">
+    <div id="waiting-content">
+        <img alt='Ajax loader' src='{{STATIC_URL}}chimere/img/ajax-loader.gif'/>
+        <p>{% trans "Loading of the map in progress" %}</p>
+    </div>
+</div>
+<div id="layer_selection">
+  <h4>{% trans "Display options" %}</h4>
+  <ul id='layer_list'>
+    <li class='head layer_map_type'>{% trans "Map type"%}</li>
+  </ul>
+</div>
+<script type="text/javascript">
+    {% if single_category %}
+    $(function() {$('#panel').hide()});{% endif %}
+    var chimere_init_options = {};
+    {% if MOBILE %}chimere_init_options["mobile"] = true;{% endif %}
+    {% if enable_clustering %}chimere_init_options["enable_clustering"] = true;{% endif %}
+    chimere_init_options["default_icon"] = '{{STATIC_URL}}img/marker-green.png';
+    chimere_init_options["map_layers"] = [{{js_map_layers|safe|escape}}];
+    chimere_init_options['permalink_label'] = '{%trans "Permalink"%}';
+    chimere_init_options['permalink_element'] = document.getElementById('permalink');
+    chimere_init_options['routing'] = {{routing}};
+    {% if dynamic_categories %}chimere_init_options['dynamic_categories'] = true;{% endif %}
+    {% if default_area %}
+    chimere_init_options["default_area"] = new Array({{default_area.upper_left_corner.x}}, {{default_area.upper_left_corner.y}}, {{default_area.lower_right_corner.x}}, {{default_area.lower_right_corner.y}});
+    {% endif %}
+    {% if p_zoom %}chimere_init_options["zoom"] = {{ p_zoom }};{% endif %}
+    {% if p_lat %}chimere_init_options["lat"] = {{ p_lat }};{% endif %}
+    {% if p_lon %}chimere_init_options["lon"] = {{ p_lon }};{% endif %}
+    {% if p_routing_start_lon %}chimere_init_options["routing_start_lon"] = {{ p_routing_start_lon }};{% endif %}
+    {% if p_routing_start_lat %}chimere_init_options["routing_start_lat"] = {{ p_routing_start_lat }};{% endif %}
+    {% if p_routing_end_lon %}chimere_init_options["routing_end_lon"] = {{ p_routing_end_lon }};{% endif %}
+    {% if p_routing_end_lat %}chimere_init_options["routing_end_lat"] = {{ p_routing_end_lat }};{% endif %}
+    {% if p_routing_steps %}chimere_init_options["routing_steps_lonlat"] = [{{ p_routing_steps }}];{% endif %}
+    chimere_init_options["icon_offset"] = new OpenLayers.Pixel({{icon_offset_x}},
+                                                            {{icon_offset_y}});
+    chimere_init_options["dynamic_categories"] = {{ dynamic_categories }};
+    {% if p_display_submited %}chimere_init_options["display_submited"] = {{ p_display_submited }};{% endif %}
+    chimere_init_options["checked_categories"] = [{% for cc in checked_categories %}{% if forloop.counter0 > 0 %}, {% endif %}{{cc}}{% endfor %}];
+    {% if area_id %}chimere_init_options['area_id'] = "{{area_id}}";{% endif %}
+    {% if p_current_feature %}
+    chimere_init_options["display_feature"] = {{ p_current_feature }};{% endif %}
+    {% if p_current_route %}
+    chimere_init_options["display_route"] = {{ p_current_route }};{% endif %}
+    {% if restricted_extent %}{{ restricted_extent }}
+    chimere_init_options["restricted_extent"] = bounds;
+    {% endif %}
+    {% if selected_map_layer %}
+    chimere_init_options["selected_map_layer"] = {{selected_map_layer}};
+    {% endif %}
+
+    $('#category_description').modal({show:false});
+    chimere_init_options["open_dialog_fx"] = function (title, content){
+        $('#category_description-content').html(content);
+        $('#category_description-label').html(title);
+        $('#category_description').modal('show');
+    }
+    $("#main-map").chimere(chimere_init_options);
+    {% if zoom %}
+    $('#maps').chimere('zoom', {'area':{{zoom}} });
+    {% endif %}
+
+    // init layer selection
+    $(function() {
+        {% for layer_name, js, def in map_layers %}
+        $('#layer_list').append("<li><input type='radio' value='{{forloop.counter0}}' name='layer_type' id='layer_{{forloop.counter}}'{% if def %} checked='checked'{% endif %}><label for='layer_{{forloop.counter}}'>{{layer_name}}</li>");{% endfor %}
+        {% for subcat in subcat_layer %}
+        {% if not subcat.category %}
+        $('#layer_list').append("<li class='head layer_category'>{{subcat.name}}</li>");{% else %}
+        $('#layer_list').append("<li><input type='checkbox' name='layer_cat' value='category_{{subcat.pk}}' id='layer_cat_{{subcat.pk}}'{% if subcat.pk in checked_categories %} checked='checked'{% endif %}><label for='layer_cat_{{subcat.pk}}'>{{subcat.name}}</li>");{%endif%}{% endfor %}
+        $('#layer_selection h4').click(function(){
+            $('#layer_list').toggle();
+        });
+        $('#layer_list input[name=layer_type]').change(function(){
+            $('#{{map_id}}').chimere('changeMapLayer', $(this).val());
+        });
+        $('#layer_list input[name=layer_cat]').change(function(){
+            // the prop has to be called twice not to mess up with the triggered
+            // click
+            $('#'+$(this).val()).prop("checked", this.checked);
+            $('#'+$(this).val()).trigger('click');
+            $('#'+$(this).val()).prop("checked", this.checked);
+        });
+        highlight_selected_categories();
+    });
+</script>
+<div id='marker_hover'><div id='marker_hover_content'></div></div>
+<div id='cluster_list'></div>
+

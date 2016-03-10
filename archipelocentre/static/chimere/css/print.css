@@ -1,0 +1,40 @@
+#topbar, .no-titlebar-simple.ui-dialog,
+#zoombar, #zoomin, #zoomout, #slidebar,
+#pandown, #panup, #panright, #panleft,
+div#footer p.map-footer{
+    display:none;
+}
+
+#main-map{
+    z-index:10;
+    top:0;
+    bottom:0;
+    height:605pt;
+    max-height:605pt;
+    width:1200pt;
+    right:50%;
+    border:none;
+}
+
+#panel #chimere_itinerary_panel{
+    width:870pt;
+    bottom:auto;
+    left:auto;
+    right:auto;
+    top:605pt;
+    position:absolute;
+    z-index:1000;
+}
+
+#sidebar div#panel{
+    width:900pt;
+    border:none;
+    overflow:visible;
+}
+
+#chimere_start_label,
+#chimere_end_label{
+    width:auto;
+    overflow:auto;
+}
+
