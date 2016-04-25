@@ -1,5 +1,7 @@
-{% load i18n chimere_tags %}<div class="navbar navbar-default navbar-fixed-top">
+{% load i18n chimere_tags %}
+<div class="navbar navbar-default navbar-fixed-top">
   <div class="container">
+    
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="icon-bar"></span>
@@ -7,55 +9,64 @@
         <span class="icon-bar"></span>
       </button>
     </div>
+    
     <div class="navbar-collapse collapse">
 
-      <div class='navbar-left'>
-      <ul class="nav nav-pills">
-    {% for action, subactions in actions %}
-        {% ifequal action.id action_selected.0 %}{% if subactions %}
-        {% for subaction in subactions %}
-            <li{% ifequal subaction.id action_selected.1 %} class='active'{% endifequal %}>
-                <a href='{{ subaction.url }}' onclick='saveExtent();'>{{ subaction.label }}</a>
-            </li>
-        {% endfor %}
-        {% endif %}{% endifequal %}
-    {% endfor %}
-        {% if is_map %}
-        <li id='categories-lnk'{% if not has_search %} class='active'{%endif%}><a href='#categories' data-toggle='panel'><span class='fa fa-chimere-action fa-check-circle-o'></span> {% trans "Categories "%}</a></li>
-        {% if has_search %}
-        <li id='search-lnk' class='active'><a href='#search-box' data-toggle='panel'><span class="glyphicon glyphicon-search"></span> {% trans "Search" %}</a></li>
-        {% endif %}
-        {% if areas_visible %}
-        <li id='maps-lnk'><span class='fa fa-chimere-action fa-chimere-maps'></span>{% display_areas %}</li>
-        <li id='permalink-lnk'><span class='fa fa-chimere-action fa-bookmark'></span><span id='permalink'></span></li>
-        <li>{% routing %}</li>
-        <li id='news-lnk'>
-        <a data-toggle='modal' data-target="#news" href='#' id='news_button'><span class='fa fa-chimere-action fa-newspaper-o'></span><span class='lbl'>{% trans "News"%}</span></a>
-        </li>
-        <!-- <li id="simple_button-lnk"><a id='simple_button' href='{% url chimere:simple_index area_name_slash %}'><span class='fa fa-chimere-action fa-simplybuilt'></span><span class='lbl'> {% trans "Simple map" %}</span></a></li> -->
-        {% endif %}
-        <li class='selection-sep'> </li>
-        {% endif %}
-      </ul>
-      </div>
-
-      <div class='navbar-right'>
-
-      <ul class="nav navbar-nav">
-        <li class='selection-sep'> </li>
-    {% for action, subactions in actions %}
-        <li id='{{action.id}}-lnk'{% ifequal action.id action_selected.0 %} class="active"{% endifequal %}>
-          <a href='{{ action.url }}' onclick='jQuery("#map").chimere("saveExtent");'>
-            <span class='fa fa-chimere-action fa-chimere-{{action.id}}'></span>
-            <span class='lbl'>{{ action.label }}</span>
-          </a>
-        </li>
-    {% endfor %}
-      </ul>
-
-      </div>
-
+        <div class='navbar-left'>
+            <ul class="nav navbar-nav">
+                <li id='categories-lnk' class='active'>
+                    <a href='#categories' data-toggle='panel'>
+                        <span class='fa fa-chimere-action'></span> {% trans "Categories "%}
+                        </a>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="navbar_social" class='navbar-right'>
+            <ul class="nav navbar-nav">
+                <li id="twitter-lnk">
+                    <a href="https://twitter.com/CarteOuverte" target="_blank" onclick='jQuery("#map").chimere("saveExtent");'>
+                        <span class="fa fa-chimere-action fa-twitter"></span>
+                    </a>
+                </li>
+                <li id="facebook-lnk">
+                    <a href="https://twitter.com/CarteOuverte" target="_blank" onclick='jQuery("#map").chimere("saveExtent");'>
+                        <span class="fa fa-chimere-action fa-facebook"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class='navbar-right'>
+            <ul class="nav navbar-nav">
+                <li id='search-lnk'><a href='#search-box' data-toggle='panel'>{% trans "Search" %}</a></li>      
+                <li class='selection-sep'> </li>
+                <li id="rss-lnk">
+                  <a href="/feeds" onclick='jQuery("#map").chimere("saveExtent");'>
+                    <span class="fa fa-chimere-action fa-chimere-rss"></span>
+                    <span class="lbl">FLUX RSS</span>
+                  </a>
+                </li>
+                <li class='selection-sep'> </li>
+                <li id="view-lnk">
+                  <a href="/" onclick='jQuery("#map").chimere("saveExtent");'>
+                    <span class="fa fa-chimere-action"></span>
+                    <span class="lbl">VOIR</span>
+                  </a>
+                </li>
+                <li class='selection-sep'> </li>
+                <li id="contribute-lnk">
+                  <a href="/edit/" onclick='jQuery("#map").chimere("saveExtent");'>
+                    <span class="fa fa-chimere-action"></span>
+                    <span class="lbl">PARTICIPER</span>
+                  </a>
+                </li>
+            </ul>
+        </div>
+        
+     
     </div>
+ 
   </div>
 </div>
 
