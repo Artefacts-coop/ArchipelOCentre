@@ -16,8 +16,40 @@
     <div class='show-hide-panel' id='hide-panel'><span class='fa fa-arrow-circle-left'></span></div>
     <div class='show-hide-panel' id='show-panel'><span class='fa fa-arrow-circle-right'></span></div>
     <div id='panel' class='navbar-default'>
-      <form id="frm_categories"><div id='categories'></div></form>
+      <form id="frm_categories">
+          <div id='categories'></div>
+      </form>
       <div id='search-box' class='ui-widget ui-corner-all'></div>
+      <div id='logo-archipel' class='logos'>
+          <!--
+          <img src="{{ STATIC_URL }}chimere/img/ArchipelOCentre-logo.png" alt="Logo ArchipelOCentre">
+          -->
+      </div>
+      
+      <div id="logos" class='container'>
+      <div class='row logos'>
+          <div class="col-xs-12">
+              <div class="col-xs-3">
+                  <a href="http://www.cresol.fr/" target="_blank">
+                      <img src="{{ STATIC_URL }}chimere/img/logo-cresol.png" alt="Cré-Sol">
+                   </a>
+              </div>
+              <div class="col-xs-1"></div>
+              <div class="col-xs-3">
+                  <a href="http://www.regioncentre-valdeloire.fr/accueil.html" target="_blank">
+                      <img src="{{ STATIC_URL }}chimere/img/partenaire_centre-val-de-loire.png" alt="Région Centre-Val de loire">
+                   </a>
+              </div>
+              <div class="col-xs-1"></div>
+              <div class="col-xs-3">
+                  <a href="http://www.le-mes.org/" target="_blank">
+                      <img src="{{ STATIC_URL }}chimere/img/partenaire_mouvement-economie-solidaire.png" alt="M.E.S">
+                   </a>
+              </div>
+          </div>
+      </div>
+    </div>
+      
     </div>
     <div id='category_description'>
     </div>

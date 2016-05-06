@@ -535,3 +535,22 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
     padding-left: 7px;
     background-color: #4060A5;
 }
+
+/* --- Logo ArchipelOCentre --- */
+
+#logo-archipel {
+    bottom: 220px;
+    height: 340px;
+}
+
+/* --- Logos  des partenaires --- */
+
+.logos {
+    position: fixed;
+    z-index: 15;
+    left: 0;
+    width: 400px;
+    border: 0 transparent;
+    text-align: center;
+    bottom: 0;
+}

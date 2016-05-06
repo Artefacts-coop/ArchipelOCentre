@@ -14,7 +14,7 @@
 
         <div class='navbar-left'>
             <ul class="nav navbar-nav">
-                <li id='categories-lnk' class='active'>
+                <li id='categories-lnk' {% if not has_search %} class='active'{%endif%}>
                     <a href='#categories' data-toggle='panel'>
                         <span class='fa fa-chimere-action'></span> {% trans "Categories "%}
                         </a>
@@ -49,7 +49,9 @@
         
         <div class='navbar-right'>
             <ul class="nav navbar-nav">
-                <li id='search-lnk'><a href='#search-box' data-toggle='panel'>{% trans "Search" %}</a></li>      
+                {% if has_search %}
+                <li id='search-lnk'><a href='#search-box' data-toggle='panel'>{% trans "Search" %}</a></li>
+                {%endif%} 
                 <li id="rss-lnk">
                   <a href="/feeds" onclick='jQuery("#map").chimere("saveExtent");'>
                     <span class="fa fa-chimere-action"></span>
