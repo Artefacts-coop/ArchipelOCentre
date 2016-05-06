@@ -489,10 +489,15 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
 {
     color: #ffffff;
     background-color: #4ab34c;
+    border-left: 1px solid green;
+    border-right: 1px solid green;
 }
+
 
 #navbar_social .navbar-nav>li>a {
     background-color: white;
+    border-left: 0px;
+    border-right: 0px;
 }
 
 #navbar_social .fa {
