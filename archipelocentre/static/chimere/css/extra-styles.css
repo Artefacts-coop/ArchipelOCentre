@@ -510,9 +510,16 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
     color: white;
 }
 
-#twitter-lnk>a, #facebook-lnk>a {
+#agenda-lnk>a, #blog-lnk>a, #twitter-lnk>a, #facebook-lnk>a {
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+#navbar_social .fa-bullhorn, #navbar_social .fa-calendar {
+    padding-left: 6px;
+    padding-top: 6px;
+    font-size: 18px;
+    background-color: #34b1aa;
 }
 
 #navbar_social .fa-twitter {
