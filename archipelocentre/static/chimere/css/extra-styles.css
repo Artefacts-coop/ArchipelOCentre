@@ -353,7 +353,7 @@ a#news_button{
     content:"\f14e";
 }
 
-#maps-lnk label, #contact-lnk .lbl, #simple_button-lnk .lbl, #rss-lnk .lbl{
+#maps-lnk label, #contact-lnk .lbl, #simple_button-lnk .lbl {
     display:none;
 }
 
