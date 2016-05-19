@@ -567,3 +567,11 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
     background-color: #4ab34c;  /* vert */
     font-size: 18px;
 }
+
+/* --- Liste clusters --- */
+.cluster_list {
+    border-top: 1px solid lightgray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+}
