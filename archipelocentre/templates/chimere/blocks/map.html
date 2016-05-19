@@ -19,7 +19,16 @@ $(function(){
    $('#cluster_list').dialog({'autoOpen':false,
                               'resizable':false,
                               'width':340,
-                              'dialogClass':'no-titlebar'});
+                              'dialogClass':'titlebar-close',
+                              buttons: [
+                                {
+                                    text: "Fermer", click: function() {
+                                        $(this).dialog("close")
+                                        }
+                                }
+                                    ]
+                            })
+
 });
 </script>
 <div id="waiting">
