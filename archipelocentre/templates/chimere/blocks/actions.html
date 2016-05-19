@@ -15,9 +15,19 @@
         <div class='navbar-left'>
             <ul class="nav navbar-nav">
                 <li id='categories-lnk' {% if not has_search %} class='active'{%endif%}>
-                    <a href='#categories' data-toggle='panel'>
+                    <a href='categories' data-toggle='panel'>
                         <span class='fa fa-chimere-action'></span> {% trans "Categories "%}
                         </a>
+                </li>
+                <li id="rss-lnk">
+                  <a href="/feeds" onclick='jQuery("#map").chimere("saveExtent");'>
+                    <span class="fa fa-chimere-action"></span>
+                    <span class="lbl">FLUX RSS
+                  </a>
+                </li>
+                <li id='zone-lnk'>
+                        <span class='fa fa-chimere-action'></span>
+                        {% display_areas %}
                 </li>
             </ul>
         </div>
@@ -52,10 +62,11 @@
                 {% if has_search %}
                 <li id='search-lnk'><a href='#search-box' data-toggle='panel'>{% trans "Search" %}</a></li>
                 {%endif%} 
-                <li id="rss-lnk">
-                  <a href="/feeds" onclick='jQuery("#map").chimere("saveExtent");'>
+                
+                 <li id="contact-lnk">
+                  <a href="/contact" onclick='jQuery("#map").chimere("saveExtent");'>
                     <span class="fa fa-chimere-action"></span>
-                    <span class="lbl">FLUX RSS</span>
+                    <span class="lbl">CONTACT</span>
                   </a>
                 </li>
                 <li id="view-lnk">

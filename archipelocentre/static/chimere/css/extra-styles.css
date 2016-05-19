@@ -380,7 +380,7 @@ a#news_button{
 }
 
 @media (max-width: 767px) {
-    #news-lnk .lbl, #simple_button-lnk .lbl, #maps-lnk label, #contact-lnk .lbl{
+    #news-lnk .lbl, #simple_button-lnk .lbl, #maps-lnk .lbl, #contact-lnk .lbl{
         display:inline-block;
     }
     .selection-sep{
@@ -472,10 +472,11 @@ a#news_button{
 /*------------------------------------------------------------*/
 .navbar {
     background-color: #4ab34c;  /* vert */
+    height: 51px;
 }
 
 span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
-#categories-lnk, #search-lnk, .fa-chimere-action, #news-lnk a,
+#categories-lnk, #search-lnk, #maps-lnk .fa-chimere-action, #news-lnk a,
 .nav-pills > li#news-lnk > a > .fa{
     text-transform: uppercase;
     font-size: 1.1em;
@@ -553,4 +554,16 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
     border: 0 transparent;
     text-align: center;
     bottom: 0;
+}
+
+/* --- Zone geographique --- */
+#zone-lnk {
+    position: relative;
+    display: block;
+}
+
+#areas-div > select {
+    color: #fff;
+    background-color: #4ab34c;  /* vert */
+    font-size: 18px;
 }
