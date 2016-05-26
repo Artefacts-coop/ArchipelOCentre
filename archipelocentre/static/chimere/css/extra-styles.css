@@ -583,9 +583,18 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
 }
 
 /* --- Liste clusters --- */
+.ui-widget-header {
+    background-color: #4ab34c;  /* vert */
+}
 .cluster_list {
     border-top: 1px solid lightgray;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-left: 20px;
+}
+
+.cluster_category {
+    font-weight: bold;
+    font-style: italic;
+    color: #CCC;
 }
