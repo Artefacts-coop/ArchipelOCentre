@@ -540,8 +540,9 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
 /* --- Logo ArchipelOCentre --- */
 
 #logo-archipel {
-    bottom: 220px;
-    height: 340px;
+    width: 64px;
+    height: 64px;
+    background: url('../img/logo_archipelocentre.png') 0 0;
 }
 
 /* --- Logos  des partenaires --- */
