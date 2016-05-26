@@ -28,7 +28,7 @@ a, a:link, a:visited, legend, #footer .map-footer a, #footer .map-footer a:link,
 .detail_amendment,
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-    background-color: #99CA3C;
+    background-color: #4ab34c;  /* vert */
 }
 
 .pager li a:hover{
@@ -597,4 +597,10 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
     font-weight: bold;
     font-style: italic;
     color: #CCC;
+}
+
+
+/* --- Panneau detail --- */
+#detail-wrapper h2, ul.share, ul.share a span.fa {
+    color: #4ab34c;  /* vert */
 }

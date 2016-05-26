@@ -22,7 +22,12 @@
     <p class='description'>{{ marker.description|sanitize:"p b i br hr strong em img:src:alt span:style a:href:target ul li ol h1 h2 h3 h4 table td tr th"|safe}}</p>
     {% endif %}
     {% for property in marker.getProperties %}
-    <p class='{{property.propertymodel.getNamedId}}'>{{ property.value|sanitize:"p b i br hr strong em img:src:alt span:style a:href:target ul li ol h1 h2 h3 h4 table td tr th"|safe}}</p>
+    <p class='{{property.propertymodel.getNamedId}}'>
+        {% if 'http://' in property.value or 'https://' in property.value  or 'www.' in property.value %}<a href='
+        {% if not 'http://' in property.value and not 'https://' in property.value %}http://{%endif%}{{ property.value|sanitize:""}}'>{%endif%}
+        {{ property.value|sanitize:"p b i br hr strong em img:src:alt span:style a:href:target ul li ol h1 h2 h3 h4 table td tr th"|safe}}
+        {% if 'http://' in property.value or 'https://' in property.value  or 'www.' in property.value %}</a>{%endif%}
+    </p>
     {% endfor %}
     {% if marker.origin %}<p class='detail_source'><strong>{% trans "Source:" %}</strong> <span>{{marker.origin}}</span></p>{% endif %}
     {% if marker.license %}<p class='detail_license'><strong>{% trans "License:" %}</strong> <span>{{marker.license}}</span></p>{% endif %}
