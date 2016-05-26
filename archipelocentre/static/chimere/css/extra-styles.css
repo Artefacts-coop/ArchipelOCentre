@@ -537,6 +537,19 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
     background-color: #4060A5;
 }
 
+#frm_categories {
+    margin-top: 32px;
+    padding-top: 16px;
+}
+
+#slogan {
+    color: #4ab34c;  /* vert */
+    font-size: 20px;
+    font-weight: bolder;
+    font-variant: small-caps;
+    font-style: italic;
+}
+
 /* --- Logo ArchipelOCentre --- */
 
 #logo-archipel {
