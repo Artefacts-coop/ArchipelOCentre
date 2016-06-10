@@ -11,18 +11,20 @@
 {{ block.super }}
 {% endblock %}
 {% block message_edit %}{% endblock %}
+
 {% block sidebar %}
-{% display_news %}
+    {% display_news %}
     <div class='show-hide-panel' id='hide-panel'><span class='fa fa-arrow-circle-left'></span></div>
     <div class='show-hide-panel' id='show-panel'><span class='fa fa-arrow-circle-right'></span></div>
     <div id='panel' class='navbar-default'>
+
       <div id="slogan">Une carte participative et ouverte à tous.</div>
-      <form id="frm_categories">
+      <form id="frm_categories" class="collapse">
           <div id='categories'></div>
       </form>
       <div id='search-box' class='ui-widget ui-corner-all'></div>
-     
-      
+
+
       <div id="logos" class='container'>
       <div class='row logos'>
           <div class="col-xs-12">
@@ -46,7 +48,7 @@
           </div>
       </div>
     </div>
-      
+
     </div>
     <div id='category_description'>
     </div>
@@ -54,7 +56,8 @@
     $(function(){$('#category_description').dialog({'autoOpen':false});});
     </script>
     <div id='detail'></div>
-{% endblock %}
+{% endblock %}   <!--  END block Sidebar -->
+
 {% block search_box %} {% endblock %}
 {% block content %}
     {{block.super}}
