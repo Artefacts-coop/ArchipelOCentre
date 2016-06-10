@@ -1,7 +1,7 @@
 {% load i18n chimere_tags %}
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-    
+
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="icon-bar"></span>
@@ -9,11 +9,11 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-    
+
     <div class="navbar-collapse collapse">
 
         <div class='navbar-left'>
-            
+
             <ul class="nav navbar-nav">
                 <li id="logo-archipel"></li>
                 <li id='categories-lnk' {% if not has_search %} class='active'{%endif%}>
@@ -22,7 +22,9 @@
                         </a>
                 </li>
                 <li id="rss-lnk">
-                  <a href="/feeds" onclick='jQuery("#map").chimere("saveExtent");'>
+                  <a href="/feeds" onclick='jQuery("#map").chimere("saveExtent");'
+                  title="Se tenir informé des évolutions" data-toggle="tooltip" data-placement="bottom"
+                  >
                     <span class="fa fa-chimere-action"></span>
                     <span class="lbl">FLUX RSS
                   </a>
@@ -33,38 +35,46 @@
                 </li>
             </ul>
         </div>
-        
+
         <div id="navbar_social" class='navbar-right'>
             <ul class="nav navbar-nav">
                 <li id="agenda-lnk">
-                    <a href="http://agendacitoyen.fr/" target="_blank" onclick='jQuery("#map").chimere("saveExtent");'>
+                    <a href="http://agendacitoyen.fr/" target="_blank" onclick='jQuery("#map").chimere("saveExtent");'
+                    title="Les événements citoyens près de chez vous" data-toggle="tooltip" data-placement="bottom"
+                    >
                         <span class="fa fa-chimere-action fa-calendar"></span>
                     </a>
                 </li>
                 <li id="blog-lnk">
-                    <a href="http://www.blog.cresol.fr/" target="_blank" onclick='jQuery("#map").chimere("saveExtent");'>
+                    <a href="http://www.blog.cresol.fr/" target="_blank" onclick='jQuery("#map").chimere("saveExtent");'
+                    title="Voir le blog citoyen" data-toggle="tooltip" data-placement="bottom"
+                    >
                         <span class="fa fa-chimere-action fa-bullhorn"></span>
                     </a>
                 </li>
                 <li id="twitter-lnk">
-                    <a href="http://twitter.com/cresolasso" target="_blank" onclick='jQuery("#map").chimere("saveExtent");'>
+                    <a href="http://twitter.com/cresolasso" target="_blank" onclick='jQuery("#map").chimere("saveExtent");'
+                    title="Twitter" data-toggle="tooltip" data-placement="bottom"
+                    >
                         <span class="fa fa-chimere-action fa-twitter"></span>
                     </a>
                 </li>
                 <li id="facebook-lnk">
-                    <a href="http://www.facebook.com/reseaucresol/" target="_blank" onclick='jQuery("#map").chimere("saveExtent");'>
+                    <a href="http://www.facebook.com/reseaucresol/" target="_blank" onclick='jQuery("#map").chimere("saveExtent");'
+                    title="Facebook" data-toggle="tooltip" data-placement="bottom"
+                    >
                         <span class="fa fa-chimere-action fa-facebook"></span>
                     </a>
                 </li>
             </ul>
         </div>
-        
+
         <div class='navbar-right'>
             <ul class="nav navbar-nav">
                 {% if has_search %}
                 <li id='search-lnk'><a href='#search-box' data-toggle='panel'>{% trans "Search" %}</a></li>
-                {%endif%} 
-                
+                {%endif%}
+
                  <li id="contact-lnk">
                   <a href="/contact" onclick='jQuery("#map").chimere("saveExtent");'>
                     <span class="fa fa-chimere-action"></span>
@@ -72,23 +82,25 @@
                   </a>
                 </li>
                 <li id="view-lnk">
-                  <a href="/" onclick='jQuery("#map").chimere("saveExtent");'>
+                  <a href="/" onclick='jQuery("#map").chimere("saveExtent");'  title="Retour à la carte vierge de départ" data-toggle="tooltip" data-placement="bottom"
+                  >
                     <span class="fa fa-chimere-action"></span>
-                    <span class="lbl">VOIR</span>
+                    <span class="lbl">Carte vierge</span>
                   </a>
                 </li>
                 <li id="contribute-lnk">
-                  <a href="/edit/" onclick='jQuery("#map").chimere("saveExtent");'>
+                  <a href="/edit/" onclick='jQuery("#map").chimere("saveExtent");'
+                  title="Inscrire une nouvelle initiative" data-toggle="tooltip" data-placement="bottom"
+                  >
                     <span class="fa fa-chimere-action"></span>
                     <span class="lbl">PARTICIPER</span>
                   </a>
                 </li>
             </ul>
         </div>
-        
-     
+
+
     </div>
- 
+
   </div>
 </div>
-
