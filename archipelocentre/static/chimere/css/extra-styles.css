@@ -142,6 +142,7 @@ label.labelSpan.olButton{
 
 #panel{
     max-height:none;
+    min-height: 700px;
     left:0;
     bottom:0;
     border:0 transparent;
@@ -561,9 +562,10 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
 /* --- Logos  des partenaires --- */
 
 .logos {
-    position: fixed;
+    position: absolute;
     z-index: 15;
     left: 0;
+    top:650px;
     width: 400px;
     border: 0 transparent;
     text-align: center;
