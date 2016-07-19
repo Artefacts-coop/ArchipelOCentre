@@ -142,7 +142,7 @@ label.labelSpan.olButton{
 
 #panel{
     max-height:none;
-    min-height: 700px;
+    min-height: 750px;
     left:0;
     bottom:0;
     border:0 transparent;
@@ -150,11 +150,18 @@ label.labelSpan.olButton{
     padding:16px;
     padding-top:60px;
     width:400px;
-    background-image:url('../img/ArchipelOCentre-logo.png');
-    background-position: 0px 20px, center;
-    background-repeat:no-repeat;
     z-index:12;
 }
+
+#panel-message {
+    margin-left:-20px;
+    background-image:url('../img/ArchipelOCentre-logo.png');
+    background-position: 0px 0px, center;
+    width:400px;
+    height: 600px;
+    background-repeat:no-repeat;
+}
+    
 
 #detail {
     position:static;
@@ -561,15 +568,20 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
 
 /* --- Logos  des partenaires --- */
 
-.logos {
+#logos {
     position: absolute;
     z-index: 15;
     left: 0;
-    top:650px;
-    width: 400px;
+    top:700px;
+    width: 360px;
     border: 0 transparent;
     text-align: center;
     bottom: 0;
+    margin-left: -20px;
+}
+
+.logo-partenaire {
+    width: 100px;
 }
 
 /* --- Zone geographique --- */
