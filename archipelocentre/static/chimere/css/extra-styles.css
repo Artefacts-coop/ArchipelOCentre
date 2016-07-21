@@ -617,3 +617,16 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
 #detail-wrapper h2, ul.share, ul.share a span.fa {
     color: #4ab34c;  /* vert */
 }
+
+
+/* --- Carte --- */
+.olControlPermalink {
+    left: auto;
+    right: 50px;
+}
+
+.olControlPermalink a:link {
+    color: purple;
+    font-size: 18px;
+    font-weight:bolder;
+}

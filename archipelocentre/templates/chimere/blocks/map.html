@@ -51,7 +51,7 @@ $(function(){
     {% if enable_clustering %}chimere_init_options["enable_clustering"] = true;{% endif %}
     chimere_init_options["default_icon"] = '{{STATIC_URL}}img/marker-green.png';
     chimere_init_options["map_layers"] = [{{js_map_layers|safe|escape}}];
-    chimere_init_options['permalink_label'] = '{%trans "Permalink"%}';
+    chimere_init_options['permalink_label'] = 'Lien direct vers cette localisation';
     chimere_init_options['permalink_element'] = document.getElementById('permalink');
     chimere_init_options['routing'] = {{routing}};
     {% if dynamic_categories %}chimere_init_options['dynamic_categories'] = true;{% endif %}
