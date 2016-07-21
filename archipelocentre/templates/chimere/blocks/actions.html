@@ -15,11 +15,25 @@
         <div class='navbar-left'>
 
             <ul class="nav navbar-nav">
-                <li id="logo-archipel"></li>
-                <li id='categories-lnk' {% if not has_search %} class='active'{%endif%}>
+                <li id="logo-archipel">
+                    <a  href="/" onclick='jQuery("#map").chimere("saveExtent");'
+                        title="Retour à la carte vierge de départ" 
+                        data-toggle="tooltip" 
+                        data-placement="bottom">
+                    </a>
+                </li>
+                <li id='accueil-lnk'>
+                    <a  href="/" onclick='jQuery("#map").chimere("saveExtent");'
+                        title="Accueil, retour à la carte vierge de départ" 
+                        data-toggle="tooltip" 
+                        data-placement="bottom">
+                        <span class='fa fa-chimere-action'></span>ACCUEIL
+                    </a>
+                </li>
+                <li id='categories-lnk'>
                     <a href='#frm_categories' data-toggle='collapse'>
                         <span class='fa fa-chimere-action'></span> {% trans "Categories "%}
-                        </a>
+                    </a>
                 </li>
                 <li id="rss-lnk">
                   <a href="/feeds" onclick='jQuery("#map").chimere("saveExtent");'
@@ -79,13 +93,6 @@
                   <a href="/contact" onclick='jQuery("#map").chimere("saveExtent");'>
                     <span class="fa fa-chimere-action"></span>
                     <span class="lbl">CONTACT</span>
-                  </a>
-                </li>
-                <li id="view-lnk">
-                  <a href="/" onclick='jQuery("#map").chimere("saveExtent");'  title="Retour à la carte vierge de départ" data-toggle="tooltip" data-placement="bottom"
-                  >
-                    <span class="fa fa-chimere-action"></span>
-                    <span class="lbl">Carte vierge</span>
                   </a>
                 </li>
                 <li id="contribute-lnk">

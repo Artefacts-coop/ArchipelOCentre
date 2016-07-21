@@ -361,13 +361,12 @@ a#news_button{
     content:"\f14e";
 }
 
-#maps-lnk label, #contact-lnk .lbl, #simple_button-lnk .lbl {
+#maps-lnk label, #simple_button-lnk .lbl {
     display:none;
 }
 
 @media (min-width: 1552px) {
-    #maps-lnk label,
-    #contact-lnk .lbl{
+    #maps-lnk label{
         display:inline;
     }
 }
@@ -388,7 +387,7 @@ a#news_button{
 }
 
 @media (max-width: 767px) {
-    #news-lnk .lbl, #simple_button-lnk .lbl, #maps-lnk .lbl, #contact-lnk .lbl{
+    #news-lnk .lbl, #simple_button-lnk .lbl, #maps-lnk .lbl{
         display:inline-block;
     }
     .selection-sep{
@@ -484,7 +483,7 @@ a#news_button{
 }
 
 span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
-#categories-lnk, #search-lnk, #maps-lnk .fa-chimere-action, #news-lnk a,
+#categories-lnk, #search-lnk #accueil-lnk, #maps-lnk .fa-chimere-action, #news-lnk a,
 .nav-pills > li#news-lnk > a > .fa{
     text-transform: uppercase;
     font-size: 1.1em;
@@ -497,8 +496,8 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>li>a
 {
     color: #ffffff;
-    background-color: #4ab34c;
-    border-left: 1px solid green;
+    /*background-color: #4ab34c;
+    border-left: 1px solid green;*/
     border-right: 1px solid green;
 }
 
