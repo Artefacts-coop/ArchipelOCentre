@@ -88,8 +88,17 @@
                 {% if has_search %}
                 <li id='search-lnk'><a href='#search-box' data-toggle='panel'>{% trans "Search" %}</a></li>
                 {%endif%}
-
-                 <li id="contact-lnk">
+                
+                <li id="aide-lnk">
+                  <a href="http://savoirscommuns.comptoir.net/archipel"
+                  title="Accéder au tutoriel ..." data-toggle="tooltip" data-placement="bottom"
+                  target="_blank"
+                  >
+                    <span class="fa fa-chimere-action"></span>
+                    <span class="lbl">AIDE</span>
+                  </a>
+                </li>
+                <li id="contact-lnk">
                   <a href="/contact" onclick='jQuery("#map").chimere("saveExtent");'>
                     <span class="fa fa-chimere-action"></span>
                     <span class="lbl">CONTACT</span>

@@ -626,7 +626,7 @@ span#permalink, .navbar-nav .lbl, #areas-div label, #permalink, #simple_button,
 }
 
 .olControlPermalink a:link {
-    color: purple;
+    color: purple²;
     font-size: 18px;
     font-weight:bolder;
 }
